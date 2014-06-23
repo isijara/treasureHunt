@@ -49,3 +49,13 @@ html,body {
 .cursor-pointer {
   cursor:pointer;
 }
+
+
+.select-nickname {
+
+}
+
+.nick-container {
+  padding-top: 15%;
+  width:50%;
+}

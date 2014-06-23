@@ -14,3 +14,17 @@
     border: solid 1px;
     height: 94%;
 }
+
+
+.message-area {
+	height:95%;
+
+}
+.send {
+	height:5%;
+}
+.writing-area {
+	height:5%;
+	border-top: solid 1px;
+	width:90%;
+}

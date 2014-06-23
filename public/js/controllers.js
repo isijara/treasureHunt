@@ -11,7 +11,16 @@ angular.module('treasureHunt').factory('_',
     }
 );
 
-tHunt.controller('treasureHunt', function($scope, $http, _socket, $state, _) {
+angular.module('treasureHunt').factory('global',
+    function() {
+
+        return {
+            user: window.user
+        };
+    }
+);
+
+tHunt.controller('treasureHunt', function($scope, $http, _socket, $state, _, global) {
 
     window.scope = $scope;
 
@@ -19,10 +28,13 @@ tHunt.controller('treasureHunt', function($scope, $http, _socket, $state, _) {
     $scope.currentUser = { nick : ''};
 
 
+
     $scope.setUser = function() {
         $scope.currentUser.nick = prompt();
         _socket.emit('addUser', $scope.currentUser);
     };
+
+
 
     _socket.on('incomingUser', function(user) {
         $scope.users.push(user);
@@ -49,3 +61,14 @@ tHunt.controller('treasureHunt', function($scope, $http, _socket, $state, _) {
 });
 
 
+tHunt.controller('chat', function($scope, $http, _socket, $state, _) {
+    $scope.sendMessage = function  () {
+        console.log('mensaje ', $scope.message);
+        _socket.emit('message', $scope.message);
+        $scope.message = '';
+    };
+
+    _socket.on('broadcastMessage', function(msg) {
+        console.log(msg);
+    });
+});

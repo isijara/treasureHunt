@@ -1,12 +1,16 @@
 var treasureHunt = angular.module('treasureHunt', ['ui.router']);
 
 treasureHunt.config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/user');
 
     $stateProvider
-        .state('home', {
-            url: '/home',
+        .state('rivals', {
+            url: '/rivals',
             templateUrl: 'partials/chat.html'
+        })
+        .state('selectUser', {
+            url: '/user',
+            templateUrl: 'partials/selectNick.html'
         });
 });
 

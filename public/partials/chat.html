@@ -1,3 +1,13 @@
 
-<div class="col-lg-10 chat-size chat-text" ng-init="setUser()" ></div>
-<chatusers class="col-lg-2 chat-size chat-users"></chatusers>
+<div class="col-lg-10 col-xs-9 chat-size chat-text row" ng-init="setUser()" ng-controller="chat" >
+	<div class="col-lg-12 message-area" id="message-area">
+
+	</div>
+	<form ng-submit="sendMessage()">
+		<input type="text" ng-model="message" class="col-lg-11 writing-area">
+	</form>
+
+	<button class="btn col-lg-1 send bg-primary" ng-click="sendMessage()">Send</button>
+
+</div>
+<chatusers class="col-lg-2 col-xs-3 chat-size chat-users"></chatusers>
