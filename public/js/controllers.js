@@ -22,22 +22,35 @@ angular.module('treasureHunt').factory('global',
 
 tHunt.controller('treasureHunt', function($scope, $http, _socket, $state, _, global) {
 
+
+});
+
+
+tHunt.controller('chat', function($scope, $http, global, _socket, $state, _) {
     window.scope = $scope;
 
+
     $scope.users = [];
-    $scope.currentUser = { nick : ''};
-
-
+    $scope.currentUser = global.user;
 
     $scope.setUser = function() {
-        $scope.currentUser.nick = prompt();
+        console.log('setUser function');
         _socket.emit('addUser', $scope.currentUser);
     };
 
+    $scope.sendMessage = function  () {
+        console.log('mensaje ', $scope.message);
+        _socket.emit('message', $scope.message);
+        $scope.message = '';
+    };
+
+    _socket.on('broadcastMessage', function(msg) {
+        console.log(msg);
+    });
 
 
-    _socket.on('incomingUser', function(user) {
-        $scope.users.push(user);
+    _socket.on('incomingUser', function(users) {
+        $scope.users = users;
         $scope.$apply();
     });
 
@@ -57,18 +70,12 @@ tHunt.controller('treasureHunt', function($scope, $http, _socket, $state, _, glo
         });
         $scope.$apply();
     });
-
 });
 
 
-tHunt.controller('chat', function($scope, $http, _socket, $state, _) {
-    $scope.sendMessage = function  () {
-        console.log('mensaje ', $scope.message);
-        _socket.emit('message', $scope.message);
-        $scope.message = '';
+tHunt.controller('nickname', function($scope, $state, _) {
+    $scope.setUser = function() {
+        window.user = { nick: $scope.nickname };
     };
 
-    _socket.on('broadcastMessage', function(msg) {
-        console.log(msg);
-    });
 });

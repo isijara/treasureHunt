@@ -13,7 +13,7 @@ var chat = function(io) {
         socket.on('addUser', function(user) {
             users.push(user);
             console.log('new challenger approaching: ' + user.nick );
-            io.emit('incomingUser', user);
+            io.emit('incomingUser', users);
 
             socket.on('disconnect', function() {
                 console.log(user.nick + ' has vanished');

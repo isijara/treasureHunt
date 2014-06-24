@@ -1,10 +1,21 @@
-<div class="container nick-container full-height">
+<div class="container nick-container full-height" ng-controller="nickname">
 
 	<div class="panel panel-default select-nickname">
 		<div class="panel-heading"><strong>TreasureHunt</strong></div>
 
 		<div class="panel-body">
-			<strong>Select nickname: <input type="text" ng-model = "nickname"> </strong>
+			<form id="nickForm" role="form" class="form-horizontal">
+                <div class="col-xs-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="login-nickname" type="text" name="nickname" ng-model="nickname" placeholder="Select nickname" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <a id="btn-login" href="#" ui-sref="rivals" ng-click="setUser(nickname)"class="btn btn-success">Go!</a>
+                </div>
+            </form>
+
 		</div>
 	</div>
 </div>
